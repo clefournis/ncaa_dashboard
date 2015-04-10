@@ -1,0 +1,43 @@
+<?php
+
+
+/**
+* Implement hook_menu().
+*/
+function ncaa_dashboard_menu() {
+    $items ['scoreboard'] = array(
+        'title' => 'NCAA Scoreboard',
+        'description' => 'Display score for NCAA teams',
+        'type' => MENU_NORMAL_ITEM,
+        'page callback' => 'scoreboard_page',
+        'access arguments' => array('access content'),
+  );
+
+  return $items;
+};
+
+/**
+* Implement hook_theme().
+*/
+function ncaa_dashboard_theme() {
+    return array(
+    'scoreboard' => array(
+    'template' => 'scoreboard',
+    ),
+);
+}
+
+
+/**
+* Scoreboard callback function
+*/
+function scoreboard_page() {
+  $path = Drupal_get_path('module', 'ncaa_dashboard');
+  Drupal_add_library('angularjs', 'angularjs');
+  Drupal_add_js($path . '/js/main.js');
+  Drupal_add_css($path . '/css/scoreboard/stylesheets/screen.css');
+  return theme('scoreboard');
+}
+
+
+

@@ -1,0 +1,5 @@
+name = NCAA Dashboard
+description = Display a scoreboard of games
+package = NCAA
+core = 7.x
+dependencies[] = angularjs
